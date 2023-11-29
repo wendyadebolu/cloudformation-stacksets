@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "CloudFormationStackSetsOrgAdminServiceRolePolicy
 
 resource "aws_iam_role" "CloudFormationStackSetsOrgAdminServiceRolePolicy" {
   assume_role_policy = data.aws_iam_policy_document.CloudFormationStackSetsOrgAdminServiceRolePolicy.json
-  name               = "CCOE-Finops-Cloudability-Roles"
+  name               = "CCOE-Finops-Cloudability"
 }
 
 data "aws_iam_policy_document" "AWSCloudFormationStackSetExecutionRole_assume_role_policy" {
@@ -31,12 +31,12 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetExecutionRole_assume_ro
 
 resource "aws_iam_role" "AWSCloudFormationStackSetExecutionRole" {
   assume_role_policy = data.aws_iam_policy_document.AWSCloudFormationStackSetExecutionRole_assume_role_policy.json
-  name               = "CCOE-Finops-Cloudability-Execution-Roles"
+  name               = "CCOE-Finops-Cloudability-Execution"
 }
 
 resource "aws_cloudformation_stack_set" "example" {
   name                = "CCOE-Finops-Apptio-Cloudability"
-  administration_role_arn = aws_iam_role.CloudFormationStackSetsOrgAdminServiceRolePolicy.arn
+#   administration_role_arn = aws_iam_role.CloudFormationStackSetsOrgAdminServiceRolePolicy.arn
 #   execution_role_name = aws_iam_role.AWSCloudFormationStackSetExecutionRole.name
 
   # ... other configuration ...
