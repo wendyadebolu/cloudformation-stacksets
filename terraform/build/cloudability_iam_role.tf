@@ -36,7 +36,7 @@ resource "aws_iam_role" "AWSCloudFormationStackSetExecutionRole" {
 
 resource "aws_cloudformation_stack_set" "example" {
   name                = "CCOE-Finops-Apptio-Cloudability"
-#   administration_role_arn = aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn
+  administration_role_arn = aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn
 #   execution_role_name = aws_iam_role.AWSCloudFormationStackSetExecutionRole.name
 
   # ... other configuration ...
@@ -54,7 +54,9 @@ resource "aws_cloudformation_stack_set" "example" {
 }
 
 resource "aws_cloudformation_stack_set_instance" "example" {
-  account_id     = var.account_id
+  deployment_targets {
+    organizational_unit_ids = ["ou-fx8h-r5x0ih9d", "ou-fx8h-oey8c1qc"]
+  }
   region         = var.region
   stack_set_name = aws_cloudformation_stack_set.example.name
 }
