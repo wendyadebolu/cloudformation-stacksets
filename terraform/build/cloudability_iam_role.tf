@@ -54,10 +54,7 @@ resource "aws_cloudformation_stack_set" "example" {
 }
 
 resource "aws_cloudformation_stack_set_instance" "example" {
-  deployment_targets {
-    organizational_unit_ids = ["o-ep5id3trm0"]
-  }
-
+  account_id     = var.account_id
   region         = var.region
   stack_set_name = aws_cloudformation_stack_set.example.name
 }
