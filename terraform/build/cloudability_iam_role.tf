@@ -49,7 +49,7 @@ resource "aws_cloudformation_stack_set" "example" {
   }
   parameters = {
     ExternalId = "799c9320-63d8-4291-ac14-47c456760f36"
-    RoleName = "CCOE-Finops-Cloudability-Role"
+    RoleName = "CCOE-Finops-Cloudability"
     TrustedAccountId = "165736516723"
     User = "Cloudability"
   }
