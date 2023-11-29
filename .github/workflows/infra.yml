@@ -30,8 +30,8 @@ jobs:
     uses: wendyadebolu/workflow-templates/.github/workflows/plan.yml@main
     secrets: inherit
     with:
-      tf_build_path: Terraform/build
-      tf_deploy_path: Terraform/deploy
+      tf_build_path: terraform/build
+      tf_deploy_path: terraform/deploy
       environment: ${{ matrix.env }}
       region: ${{ matrix.region }}
       role_to_assume: ${{ matrix.role_to_assume }}
@@ -46,8 +46,8 @@ jobs:
     uses: wendyadebolu/workflow-templates/.github/workflows/apply.yml@main
     secrets: inherit
     with:
-      tf_build_path: Terraform/build
-      tf_deploy_path: Terraform/deploy
+      tf_build_path: terraform/build
+      tf_deploy_path: terraform/deploy
       environment: ${{ matrix.env }}
       env_deploy_list: ${{ needs.set-matrix.outputs.env_deploy_list }}
       region: ${{ matrix.region }}
