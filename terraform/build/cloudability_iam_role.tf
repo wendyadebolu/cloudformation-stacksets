@@ -52,7 +52,7 @@ resource "aws_cloudformation_stack_set" "example" {
     User = "Cloudability"
   }
 
-  template_body = file("${path.module}/your_template_file.yaml")
+  template_body = file("${path.module}/cloudabilitystacksets.yaml")
 }
 
 resource "aws_cloudformation_stack_set_instance" "example" {
