@@ -37,7 +37,7 @@ resource "aws_iam_role" "AWSCloudFormationStackSetExecutionRole" {
 resource "aws_cloudformation_stack_set" "example" {
   name                = "CCOE-Finops-Apptio-Cloudability"
   administration_role_arn = aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn
-  execution_role_name = "ApptioCloudabilityRole"
+  execution_role_name = aws_iam_role.AWSCloudFormationStackSetExecutionRole.name
 
   # ... other configuration ...
 
