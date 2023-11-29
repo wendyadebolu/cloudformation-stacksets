@@ -3,6 +3,3 @@ variable "region" {
   
 }
 
-variable "account_id" {
-  default = "o-ep5id3trm0"
-}

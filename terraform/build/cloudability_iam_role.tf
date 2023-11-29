@@ -14,7 +14,7 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetAdministrationRole_assu
 
 resource "aws_iam_role" "AWSCloudFormationStackSetAdministrationRole" {
   assume_role_policy = data.aws_iam_policy_document.AWSCloudFormationStackSetAdministrationRole_assume_role_policy.json
-  name               = "AWSCloudFormationStackSetAdministrationRole"
+  name               = "CCOE-Finops-Cloudability-Role"
 }
 
 data "aws_iam_policy_document" "AWSCloudFormationStackSetExecutionRole_assume_role_policy" {
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetExecutionRole_assume_ro
 
 resource "aws_iam_role" "AWSCloudFormationStackSetExecutionRole" {
   assume_role_policy = data.aws_iam_policy_document.AWSCloudFormationStackSetExecutionRole_assume_role_policy.json
-  name               = "AWSCloudFormationStackSetExecutionRole"
+  name               = "CCOE-Finops-Cloudability-Execution-Role"
 }
 
 resource "aws_cloudformation_stack_set" "example" {
@@ -51,6 +51,8 @@ resource "aws_cloudformation_stack_set" "example" {
     TrustedAccountId = "165736516723"
     User = "Cloudability"
   }
+
+  template_body = file("${path.module}/your_template_file.yaml")
 }
 
 resource "aws_cloudformation_stack_set_instance" "example" {
