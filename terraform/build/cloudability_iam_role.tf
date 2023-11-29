@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "AWSCloudFormationStackSetAdministrationRole_assume_role_policy" {
+data "aws_iam_policy_document" "CloudFormationStackSetsOrgAdminServiceRolePolicy" {
   statement {
     actions = ["sts:AssumeRole"]
     effect  = "Allow"
@@ -12,8 +12,8 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetAdministrationRole_assu
 
 # data "aws_organizations_organization" "example" {}
 
-resource "aws_iam_role" "AWSCloudFormationStackSetAdministrationRole" {
-  assume_role_policy = data.aws_iam_policy_document.AWSCloudFormationStackSetAdministrationRole_assume_role_policy.json
+resource "aws_iam_role" "CloudFormationStackSetsOrgAdminServiceRolePolicy" {
+  assume_role_policy = data.aws_iam_policy_document.CloudFormationStackSetsOrgAdminServiceRolePolicy.json
   name               = "CCOE-Finops-Cloudability-Role"
 }
 
@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetExecutionRole_assume_ro
     effect  = "Allow"
 
     principals {
-      identifiers = [aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn]
+      identifiers = [aws_iam_role.CloudFormationStackSetsOrgAdminServiceRolePolicy.arn]
       type        = "AWS"
     }
   }
@@ -36,7 +36,7 @@ resource "aws_iam_role" "AWSCloudFormationStackSetExecutionRole" {
 
 resource "aws_cloudformation_stack_set" "example" {
   name                = "CCOE-Finops-Apptio-Cloudability"
-#   administration_role_arn = aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn
+  administration_role_arn = aws_iam_role.AWSCloudFormationStackSetAdministrationRole.arn
 #   execution_role_name = aws_iam_role.AWSCloudFormationStackSetExecutionRole.name
 
   # ... other configuration ...
