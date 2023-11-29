@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "AWSCloudFormationStackSetAdministrationRole_assu
   }
 }
 
-data "aws_organizations_organization" "example" {}
+# data "aws_organizations_organization" "example" {}
 
 resource "aws_iam_role" "AWSCloudFormationStackSetAdministrationRole" {
   assume_role_policy = data.aws_iam_policy_document.AWSCloudFormationStackSetAdministrationRole_assume_role_policy.json
@@ -55,7 +55,7 @@ resource "aws_cloudformation_stack_set" "example" {
 
 resource "aws_cloudformation_stack_set_instance" "example" {
   deployment_targets {
-    organizational_unit_ids = [data.aws_organizations_organization.example.id]
+    organizational_unit_ids = ["o-ep5id3trm0"]
   }
 
   region         = var.region
